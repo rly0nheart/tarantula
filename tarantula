@@ -1,0 +1,149 @@
+#!/usr/bin/env python3
+
+# Importing required modules
+import requests
+import sys,time,logging,argparse
+from assets.COLORS import *
+from assets.BANNER import *
+from bs4 import BeautifulSoup
+from urllib.parse import urlparse, urljoin
+
+
+# Logging configurations
+logging.basicConfig(format=f"%(asctime)s {YELLOW}%(message)s{RESET}",datefmt=f"{WHITE}[{RESET}{RED}%I{RESET}:{RED}%M{RESET}:{RED}%S{RESET}{WHITE}%p]{RESET}",level=logging.DEBUG)
+
+class Tarantula:
+	parser = argparse.ArgumentParser(description="Tarantula (web crawler) v1.0")
+	parser.add_argument("url", help="Target url, starting with https:// or http://")
+	parser.add_argument("-C","--count", help="Number of urls to crawl, maximum is 30", default=30, type=int, dest="count")
+	args = parser.parse_args()
+	url = args.url
+	max_urls = args.count
+	
+	def __init__(self):
+		banner()
+		self.internal_urls = set()
+		self.external_urls = set()
+		self.total_urls_visited = 0
+		
+		self.now = time.time()
+		self.seconds = time.time()-self.now
+		
+	# check if url is valid (returns True or False)						
+	def is_valid(self,url):
+	   parsed = urlparse(url)
+	   return bool(parsed.netloc) and bool(parsed.scheme)
+	
+	# get all the links from a specified website   
+	def get_all_website_links(self,url):
+	   urls = set()
+	   # domain name of the URL without the protocol
+	   domain_name = urlparse(url).netloc
+	   soup = BeautifulSoup(requests.get(url).content, "html.parser")
+	   for a_tag in soup.findAll("a"):
+	       href = a_tag.attrs.get("href")
+	       if href == "" or href is None:
+	           # Continue if href is an empty tag
+	           continue
+	           
+	       # join the URL if it's relative (not absolute link)
+	       href = urljoin(url, href)
+	       parsed_href = urlparse(href)
+	       # remove URL GET parameters, URL fragments
+	       href = parsed_href.scheme + "://" + parsed_href.netloc + parsed_href.path
+	       if not self.is_valid(href):
+	           # Continue if URL is not valid
+	           continue
+	           
+	       if href in self.internal_urls:
+	           # Continue if URL is already in the set
+	           continue
+	           
+	       if domain_name not in href:
+	           # external link
+	           if href not in self.external_urls:
+	               logging.info("%sEXTERNAL LINK:%s %s" % (GRAY,RESET,href))
+	               self.external_urls.add(href)
+	               continue
+	               
+	       logging.info(f"%sINTERNAL LINK:%s %s" % (WHITE,RESET,href))
+	       urls.add(href)
+	       self.internal_urls.add(href)
+	   logging.info("%s%s%s%s Crawled.%s\n" % (RED,url,RESET,WHITE,RESET))
+	   return urls
+	   	   
+	
+	def main(self):
+		count = 0
+		while True:
+		    try:
+		    	count = count + 1
+		    	self.crawl(self.url,self.max_urls)
+		    	print("""%s
+┏━[Crawled URLs]
+┃
+┗[%s]""" % (WHITE,self.max_urls));time.sleep(0.5)
+		    	print("""
+┏━[Internal Links Scraped]
+┃
+┗[%s]""" %len(self.internal_urls));time.sleep(0.5)
+		    	print("""
+┏━[%sExternal Links Scraped%s]
+┃
+┗[%s%s%s]"""%(GRAY,WHITE,GRAY,len(self.external_urls),WHITE));time.sleep(0.5)
+		    	print("""
+┃
+┃
+┗[%s""" % WHITE,len(self.external_urls)+len(self.internal_urls),"""Total Link(s) Scraped.]%s""" % RESET);time.sleep(0.5)
+		    	
+		    	domain_name = urlparse(self.url).netloc
+		    	print("""%s
+┃
+┃
+┗[%sTarantula%s%s stopped in %s%s%s%s%s seconds.]%s""" % (WHITE,YELLOW,RESET,WHITE,RESET,RED,self.seconds,RESET,WHITE,RESET))
+		    	
+		    	# Prompt user to save results
+		    	prompt = input("\n%sWrite results to file(s)?%s%s (Y/N) %s" % (WHITE,RESET,RED,RESET));time.sleep(0.5)
+		    	if prompt.lower() == "y":
+		    		self.logger(domain_name)
+		    		break
+		    		
+		    	else:
+		    		logging.info("%sSaving skipped..%s" % (WHITE,RESET))
+		    		break
+		    		
+		    except KeyboardInterrupt:
+		    	sys.exit("%sTarantula terminated with%s %s CTRL+C %s" % (WHITE,RESET,RED,RESET))
+		    	
+		    except Exception as e:
+		    	logging.info("%sERROR%s: %s%s%s\n" % (RED,RESET,RED,e,RESET));time.sleep(1)
+		    	logging.info("%sRetrying(%s)…%s" % (WHITE,count,RESET));time.sleep(1)
+
+	# Saving results to a two separate files	
+	def logger(self,domain_name):  
+		  with open("%s_internal_links.cr" % (domain_name), "w") as f:
+		      for internal_link in self.internal_urls:
+		          print(internal_link.strip(), file=f)
+		      print(f"\n%sInternal links stored in%s %s./%s_internal_links.cr%s" % (WHITE,RESET,YELLOW,domain_name,RESET))
+		          
+		  with open("%s_external_links.cr" % (domain_name), "w") as f:
+		      for external_link in self.external_urls:
+		          print(external_link.strip(), file=f)
+		      print(f"%sExternal links stored in%s %s./%s_external_links.cr%s" % (GRAY,RESET,YELLOW,domain_name,RESET))
+		          
+				    
+	   
+	def crawl(self,url, max_urls = 30):
+	   global total_urls_visited
+	   
+	   self.total_urls_visited += 1
+	   links = self.get_all_website_links(url)
+	   for link in links:
+	       if self.total_urls_visited >= max_urls:
+	           break
+	          
+	       self.crawl(link,max_urls)
+
+if __name__ == "__main__":
+    	run = Tarantula()
+    	run.main()
