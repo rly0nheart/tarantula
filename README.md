@@ -5,6 +5,7 @@
 ![GitHub](https://img.shields.io/github/license/rlyonheart/tarantula?style=flat)
 ![GitHub repo size](https://img.shields.io/github/repo-size/rlyonheart/tarantula)
 ![CodeFactor](https://www.codefactor.io/repository/github/rlyonheart/tarantula/badge)
+![Snyk Vulnerabilities for GitHub Repo](https://img.shields.io/snyk/vulnerabilities/github/rlyonheart/tarantula)
 ![Twitter](https://img.shields.io/twitter/follow/rly0nheart?&style=flat&logo=twitter)
 
 Python web crawler tool.
