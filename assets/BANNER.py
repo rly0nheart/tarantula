@@ -1,8 +1,7 @@
 import os
-from assets.COLORS import *
+from assets.COLORS import WHITE,RESET
 
 def banner():
-    os.system("clear")
     print("""
    ▄▄▄▄▀ ██   █▄▄▄▄ ██      ▄     ▄▄▄▄▀ ▄   █    ██   
 ▀▀▀ █    █ █  █  ▄▀ █ █      █ ▀▀▀ █     █  █    █ █  
