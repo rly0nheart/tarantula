@@ -14,17 +14,17 @@ scrapes internal and external urls
 
 # Installation
 **Clone this repo:**
-> git clone https://github.com/rlyonheart/tarantula
+> <code>$ git clone https://github.com/rlyonheart/tarantula</code>
 
-> cd tarantula
+> <code>$ cd tarantula</code>
 
-> pip3 install -r requirements.txt
+> <code>$ pip3 install -r requirements.txt</code>
 
 # Usage
-> python3 tarantula [target url] -C [number of links to crawl]
+> <code>$ python3 tarantula [target url] -C [number of links to crawl]</code>
   
 **example;**
-> python3 tarantula https://github.com -C 1
+> <code>$ python tarantula https://github.com -C 1</code>
 
 **sample output:**
 
@@ -112,9 +112,4 @@ scrapes internal and external urls
 [12:59:39PM] https://github.com Crawled.
  
 Tarantula stopped in 8.58306884765625e-06 seconds.
-
-# Developer 
-**Richard Mwewa**
-
-**Alias:** rly0nheart
   
