@@ -7,6 +7,7 @@
 ![Lines of code](https://img.shields.io/tokei/lines/github/rlyonheart/tarantula)
 ![CodeFactor](https://www.codefactor.io/repository/github/rlyonheart/tarantula/badge)
 ![Twitter](https://img.shields.io/twitter/follow/rly0nheart?&style=flat&logo=twitter)
+[![asciicast](https://asciinema.org/a/437445.svg)](https://asciinema.org/a/437445)
 
 Python web crawler tool.
 scrapes internal and external urls
