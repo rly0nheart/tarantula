@@ -1,8 +1,10 @@
+import sys
 import time
+import logging
+import argparse
 import requests
 from tqdm import tqdm
 from bs4 import BeautifulSoup
-import sys,time,logging,argparse
 from assets.BANNER import BANNER
 from urllib.parse import urlparse, urljoin
 from assets.COLORS import RED,WHITE,GREEN,YELLOW,RESET
