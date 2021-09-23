@@ -68,7 +68,7 @@ class Tarantula:
 		count = 0
 		count = count + 1
 		self.crawl(url,max_urls)
-		domain_name = urlparse(self.url).netloc				    
+		domain_name = urlparse(url).netloc				    
 	   
 	def crawl(self,url,max_urls = 30):
 	   global total_urls_visited
