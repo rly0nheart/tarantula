@@ -1,10 +1,8 @@
-import sys
 import time
-import logging
-import argparse
 import requests
 from tqdm import tqdm
 from bs4 import BeautifulSoup
+import sys,time,logging,argparse
 from assets.BANNER import BANNER
 from urllib.parse import urlparse, urljoin
 from assets.COLORS import RED,WHITE,GREEN,YELLOW,RESET
@@ -15,9 +13,6 @@ class Tarantula:
 		self.internal_urls = set()
 		self.external_urls = set()
 		self.total_urls_visited = 0
-		
-		self.now = time.time()
-		self.seconds = time.time()-self.now
 		
 	# check if url is valid (returns True or False)						
 	def is_valid(self,url):
