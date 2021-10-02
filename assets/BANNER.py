@@ -1,12 +1,10 @@
 import os
 from assets.COLORS import RED,RESET, WHITE
 BANNER = f"""{RED}
-╱╭╮╱╱╱╱╱╱╱╱╱╱╱╭╮╱╱╱╭╮
-╭╯╰╮╱╱╱╱╱╱╱╱╱╭╯╰╮╱╱┃┃
-╰╮╭╋━━┳━┳━━┳━╋╮╭╋╮╭┫┃╭━━╮
-╱┃┃┃╭╮┃╭┫╭╮┃╭╮┫┃┃┃┃┃┃┃╭╮┃
-╱┃╰┫╭╮┃┃┃╭╮┃┃┃┃╰┫╰╯┃╰┫╭╮┃
-╱╰━┻╯╰┻╯╰╯╰┻╯╰┻━┻━━┻━┻╯╰╯
+╭╮╱╱╱╱╱╱╱╱╱╱╱╭╮
+┃╰┳━╮╭┳┳━╮╭━┳┫╰┳┳┳╮╭━╮
+┃╭┫╋╰┫╭┫╋╰┫┃┃┃╭┫┃┃╰┫╋╰╮
+╰━┻━━┻╯╰━━┻┻━┻━┻━┻━┻━━╯
 Disclaimer{WHITE}:
 This tool was developed for educational purposes and should not be used in environments
 without {RED}Legal Authorization.
