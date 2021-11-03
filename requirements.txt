@@ -1,3 +1,4 @@
+tqdm==4.62.3
 colorama==0.4.4
 bs4==0.0.1
 BeautifulSoup4==4.9.1
