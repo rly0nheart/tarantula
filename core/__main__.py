@@ -3,7 +3,6 @@ import time
 import logging
 import argparse
 import requests
-from tqdm import tqdm
 from bs4 import BeautifulSoup
 from assets.BANNER import BANNER
 from urllib.parse import urlparse, urljoin
@@ -27,7 +26,7 @@ class Tarantula:
 	   # domain name of the URL without the protocol
 	   domain_name = urlparse(url).netloc
 	   soup = BeautifulSoup(requests.get(url).content, "html.parser")
-	   for a_tag in tqdm(soup.findAll("a")):
+	   for a_tag in soup.findAll("a"):
 	       href = a_tag.attrs.get("href")
 	       if href == "" or href is None:
 	           # Continue if href is an empty tag
@@ -48,12 +47,12 @@ class Tarantula:
 	           
 	       if domain_name not in href:
 	           if href not in self.external_urls:
-	               print(f"{WHITE}[{RED}external link{WHITE}]::{GREEN} {href}")
+	               print(f"{WHITE}* external_link:{GREEN} {href}")
 	               time.sleep(0.08)
 	               self.external_urls.add(href)
 	               continue
 	               
-	       print(f"{WHITE}[internal link]::{GREEN} {href}")
+	       print(f"{WHITE}* internal_link:{GREEN} {href}")
 	       time.sleep(0.08)
 	       urls.add(href)
 	       self.internal_urls.add(href)
