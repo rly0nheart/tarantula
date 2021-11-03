@@ -57,7 +57,7 @@ class Tarantula:
 	       time.sleep(0.08)
 	       urls.add(href)
 	       self.internal_urls.add(href)
-	   print(f"{WHITE}Finished crawling {RED}{url}{RESET}\n")
+	   print(f"{WHITE}* Finished crawling {RED}{url}{RESET}\n")
 	   return urls
 	   	   
 	
