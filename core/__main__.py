@@ -69,7 +69,7 @@ class Tarantula:
 	   
 	   self.total_urls_visited += 1
 	   links = self.get_all_website_links(url)
-	   for link in tqdm(links):
+	   for link in links:
 	       if self.total_urls_visited >= max_urls:
 	           break
 	          
