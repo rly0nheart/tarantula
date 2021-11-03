@@ -26,7 +26,7 @@ if __name__ == "__main__":
 			    
 		except KeyboardInterrupt:
 		    if args.verbose:
-		    	sys.exit(f"{YELLOW}Process {WHITE}interrupted with {RED}Ctrl{RESET}+{RED}C{RESET}")
+		    	exit(f"{YELLOW}Process {WHITE}interrupted with {RED}Ctrl{RESET}+{RED}C{RESET}")
 		    exit()
 		    
 		except Exception as e:
