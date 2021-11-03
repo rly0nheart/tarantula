@@ -12,15 +12,20 @@ scrapes internal and external urls
 
 # Installation
 **Clone this repo:**
-> <code>$ git clone https://github.com/rlyonheart/tarantula.git</code>
+```
+git clone https://github.com/rlyonheart/tarantula.git
+```
 
-> <code>$ cd tarantula</code>
+```
+cd tarantula
+```
 
-> <code>$ pip3 install -r requirements.txt</code>
+```
+pip install -r requirements.txt
+```
 
-# Arguments
-| Flag           | Or            |MetaVar|                 Usage|
-| ------------- |:-------------:|:----------------------:|:---------:|
-| <code>-c</code>           | <code>--count</code>    | **LINKS COUNT** |  *Number of links to crawl (default is 30)* |
-| <code>-v</code>      | <code>--verbose</code>      |   **VERBOSE** |  *verbosity*  |
-| <code>-h</code> | <code>--help</code>  |  **HELP**  |  *View help message*  |
+# Optional Arguments
+| Flag          | MetaVar|                 Usage|
+| ------------- |:----------------------:|:---------:|
+| <code>-c/--count</code>    | **NUMBER** |  *Number of links to crawl (default is 30)* |
+| <code>-v/--verbose</code>      |   |  *run tarantula in verbose mode*  |
