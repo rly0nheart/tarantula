@@ -18,20 +18,20 @@ if __name__ == "__main__":
 	while True:
 		try:
 			if args.verbose:
-				logging.basicConfig(format=f"{WHITE}%(message)s{RESET}",level=logging.DEBUG)
+				logging.basicConfig(format=f"{WHITE}* %(message)s{RESET}",level=logging.DEBUG)
 			Tarantula().main(url,max_urls)
 			if args.verbose:
-			    print(f"{YELLOW}Tarantula{WHITE} stopped in {RED}{end}{WHITE} seconds.{RESET}")
+			    print(f"{WHITE}* Stopped in {GREEN}{end}{WHITE} seconds.{RESET}")
 			    break
 			    
 		except KeyboardInterrupt:
 		    if args.verbose:
-		    	exit(f"{YELLOW}Process {WHITE}interrupted with {RED}Ctrl{RESET}+{RED}C{RESET}")
+		    	exit(f"{WHITE}* Interrupted with {RED}Ctrl{RESET}+{RED}C{RESET}")
 		    break
 		    
 		except Exception as e:
 		    if args.verbose:
-		    	print(f"{WHITE}Error: {RED}{e}{RESET}")
-		    	print(f"{WHITE}Retrying…{RESET}")
+		    	print(f"{WHITE}* Error: {RED}{e}{RESET}")
+		    	print(f"{WHITE}* Retrying…{RESET}")
 
 		    		
