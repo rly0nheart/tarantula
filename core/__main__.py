@@ -4,11 +4,9 @@ import logging
 import argparse
 import requests
 from bs4 import BeautifulSoup
-from assets.BANNER import BANNER
 from urllib.parse import urlparse, urljoin
 from assets.COLORS import RED,WHITE,GREEN,YELLOW,RESET
 
-print(BANNER)
 class Tarantula:		
 	def __init__(self):
 		self.internal_urls = set()
