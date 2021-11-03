@@ -45,7 +45,7 @@ class Tarantula:
 	           
 	       if domain_name not in href:
 	           if href not in self.external_urls:
-	               print(f"{WHITE}* external_link:{GREEN} {href}")
+	               print(f"{WHITE}* external_link:{RED} {href}")
 	               time.sleep(0.08)
 	               self.external_urls.add(href)
 	               continue
