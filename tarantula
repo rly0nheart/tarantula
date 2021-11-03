@@ -8,7 +8,7 @@ from assets.COLORS import RED,WHITE,GREEN,YELLOW,RESET
 if __name__ == "__main__":
 	start = time.time()
 	end = time.time()-start
-	parser = argparse.ArgumentParser(description=f"{GREEN}Tarantula{WHITE}: Web crawler and link extractor tool developed by {GREEN}Richard Mwewa{WHITE} | {https://github.com/{GREEN}rly0nheart{RESET}")
+	parser = argparse.ArgumentParser(description=f"{GREEN}Tarantula{WHITE}: Web crawler and link extractor tool developed by {GREEN}Richard Mwewa{WHITE} | https://github.com/{GREEN}rly0nheart{RESET}")
 	parser.add_argument("url", help="Target url, starting with https:// or http://")
 	parser.add_argument("-c","--count", help="Number of links to crawl (default is 30)", default=30, type=int, dest="count", metavar="NUMBER")
 	parser.add_argument("-v", "--verbose", dest="verbose",action="store_true")
