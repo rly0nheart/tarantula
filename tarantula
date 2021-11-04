@@ -1,36 +1,35 @@
 #!/usr/bin/env python3
 
+import logging
 import argparse
-from core.__main__ import *
 from datetime import datetime
-from assets.COLORS import RED,WHITE,GREEN,YELLOW,RESET
+from src.__main__ import Tarantula
+from lib.colors import red,white,green,yellow,reset
 
 if __name__ == "__main__":
 	start = datetime.now()
-	parser = argparse.ArgumentParser(description=f"{GREEN}Tarantula{WHITE}: Web crawler and link extractor tool developed by {GREEN}Richard Mwewa{WHITE} | https://github.com/{GREEN}rly0nheart{RESET}")
-	parser.add_argument("url", help="Target url, starting with https:// or http://")
-	parser.add_argument("-c","--count", help="Number of links to crawl (default is 30)", default=30, type=int, dest="count", metavar="NUMBER")
-	parser.add_argument("-v", "--verbose", dest="verbose",action="store_true")
+	parser = argparse.ArgumentParser(description=f"{green}Tarantula{white}: Web crawler and link extractor tool developed by {green}Richard Mwewa{white} | https://github.com/{green}rly0nheart{reset}")
+	parser.add_argument("url", help=f"{white}target url starting with {green}https:// {white}or {green}http://{reset}")
+	parser.add_argument("-c","--count", help=f"{white}number of links to crawl ({green}default is {white}30){reset}", default=30, type=int, dest="count", metavar=f"{white}NUMBER{reset}")
+	parser.add_argument("-v", "--verbose",help=f"{white}run tarantula in {green}verbose{white} mode{reset}", dest="verbose",action="store_true")
 	args = parser.parse_args()
 	url = args.url
 	max_urls = args.count
 	while True:
 		try:
 			if args.verbose:
-				logging.basicConfig(format=f"{WHITE}* %(message)s{RESET}",level=logging.DEBUG)
+				logging.basicConfig(format=f"{white}* %(message)s{reset}",level=logging.DEBUG)
 			Tarantula().main(url,max_urls)
 			if args.verbose:
-			    print(f"{WHITE}* Stopped in {GREEN}{datetime.now()-start}{WHITE} seconds.{RESET}")
+			    print(f"{white}* Stopped in {green}{datetime.now()-start}{white} seconds.{reset}")
 			    break
 			    
 		except KeyboardInterrupt:
 		    if args.verbose:
-		    	exit(f"{WHITE}* Interrupted with {RED}Ctrl{RESET}+{RED}C{RESET}")
+		    	exit(f"{white}* Interrupted with {red}Ctrl{white}+{red}C{reset}")
 		    break
 		    
 		except Exception as e:
 		    if args.verbose:
-		    	print(f"{WHITE}* Error: {RED}{e}{RESET}")
-		    	print(f"{WHITE}* Retrying…{RESET}")
-
-		    		
+		    	print(f"{white}* Error: {red}{e}{reset}")
+		    	print(f"{white}* Retrying…{reset}")		    		
